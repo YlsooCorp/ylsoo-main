@@ -32,6 +32,21 @@ app.get('/about', (req, res) => {
   res.render('about', { title: 'About - Ylsoo Corporation' });
 });
 
+// Products Page
+app.get('/products', (req, res) => {
+  res.render('products', { title: 'Products - Ylsoo Corporation' });
+});
+
+// SonaOS Page
+app.get('/sonaos', (req, res) => {
+  res.render('sonaos', { title: 'SonaOS - Ylsoo Corporation' });
+});
+
+// Aivory Page
+app.get('/aivory', (req, res) => {
+  res.render('aivory', { title: 'Aivory - Ylsoo Corporation' });
+});
+
 // Contact Page
 app.get('/contact', (req, res) => {
   res.render('contact', { title: 'Contact - Ylsoo Corporation' });
