@@ -1,0 +1,179 @@
+<%- include('partials/header') %>
+
+<style>
+/* ===============================
+   Contact Page Styling
+   =============================== */
+.contact-section {
+  max-width: 1000px;
+  margin: 6rem auto;
+  padding: 0 2rem 5rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.contact-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* --- Contact Form --- */
+.contact-form {
+  flex: 1;
+  min-width: 320px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.9rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #000;
+  outline: none;
+}
+
+.contact-form button {
+  padding: 0.9rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #222;
+}
+
+/* --- Contact Info --- */
+.contact-info {
+  flex: 1;
+  min-width: 280px;
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+}
+
+.contact-info h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  color: #000;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.8rem;
+}
+
+.contact-info a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.contact-info a:hover {
+  color: #555;
+}
+
+.map-frame {
+  margin-top: 2rem;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 250px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-info,
+  .contact-form {
+    width: 100%;
+  }
+}
+</style>
+
+<section class="contact-section">
+  <div class="contact-header">
+    <h1>Contact Ylsoo Corporation</h1>
+    <p>We’d love to hear from you. Get in touch with our team for business, partnerships, or general inquiries.</p>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-form">
+      <h2>Send us a message</h2>
+      <form action="/contact" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="subject" placeholder="Subject" />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h2>Our Office</h2>
+      <p><strong>Address:</strong> 100 Innovation Drive, San Francisco, CA 94105</p>
+      <p><strong>Email:</strong> <a href="mailto:info@ylsoo.com">info@ylsoo.com</a></p>
+      <p><strong>Phone:</strong> +1 478 827 2920</p>
+
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.006356787853!2d-122.396496!3d37.791154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064f8b9ed9f%3A0x99a1f1b8adfbc9ed!2sSalesforce%20Tower!5e0!3m2!1sen!2sus!4v1638472763640!5m2!1sen!2sus"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
