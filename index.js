@@ -32,9 +32,69 @@ app.get('/about', (req, res) => {
   res.render('about', { title: 'About - Ylsoo Corporation' });
 });
 
+// Products Page
+app.get('/products', (req, res) => {
+  res.render('products', { title: 'Products - Ylsoo Corporation' });
+});
+
+// Solutions Page
+app.get('/solutions', (req, res) => {
+  res.render('solutions', { title: 'Solutions - Ylsoo Corporation' });
+});
+
+// Industries Page
+app.get('/industries', (req, res) => {
+  res.render('industries', { title: 'Industries - Ylsoo Corporation' });
+});
+
+// SonaOS Page
+app.get('/sonaos', (req, res) => {
+  res.render('sonaos', { title: 'SonaOS - Ylsoo Corporation' });
+});
+
+// Aivory Page
+app.get('/aivory', (req, res) => {
+  res.render('aivory', { title: 'Aivory - Ylsoo Corporation' });
+});
+
 // Contact Page
 app.get('/contact', (req, res) => {
   res.render('contact', { title: 'Contact - Ylsoo Corporation' });
+});
+
+// Case Studies Page
+app.get('/case-studies', (req, res) => {
+  res.render('case-studies', { title: 'Case Studies - Ylsoo Corporation' });
+});
+
+// Leadership Page
+app.get('/leadership', (req, res) => {
+  res.render('leadership', { title: 'Leadership - Ylsoo Corporation' });
+});
+
+// Careers Page
+app.get('/careers', (req, res) => {
+  res.render('careers', { title: 'Careers - Ylsoo Corporation' });
+});
+
+// Newsroom Page
+app.get('/newsroom', (req, res) => {
+  res.render('newsroom', { title: 'Newsroom - Ylsoo Corporation' });
+});
+
+// Investor Relations Page
+app.get('/investors', (req, res) => {
+  res.render('investors', { title: 'Investor Relations - Ylsoo Corporation' });
+});
+
+// Sustainability Page
+app.get('/sustainability', (req, res) => {
+  res.render('sustainability', { title: 'Sustainability - Ylsoo Corporation' });
+});
+
+// Support Page
+app.get('/support', (req, res) => {
+  res.render('support', { title: 'Support - Ylsoo Corporation' });
 });
 
 // Contact Form Submission (simple handler)
