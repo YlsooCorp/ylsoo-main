@@ -6,6 +6,36 @@
 const express = require('express');
 const path = require('path');
 
+const fetch = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null;
+
+const RESEND_API_URL = 'https://api.resend.com/emails';
+const resendApiKey = process.env.RESEND_API_KEY;
+
+async function sendEmailThroughResend(payload) {
+  if (!fetch) {
+    throw new Error('Fetch API is not available in this runtime.');
+  }
+  if (!resendApiKey) {
+    throw new Error('Resend API key is not configured.');
+  }
+
+  const response = await fetch(RESEND_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${resendApiKey}`
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errorDetails = await response.text();
+    throw new Error(`Resend API request failed: ${errorDetails}`);
+  }
+
+  return response.json();
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -42,6 +72,26 @@ app.get('/solutions', (req, res) => {
   res.render('solutions', { title: 'Solutions - Ylsoo Corporation' });
 });
 
+// Services Page
+app.get('/services', (req, res) => {
+  res.render('services', { title: 'Professional Services - Ylsoo Corporation' });
+});
+
+// Managed Services Page
+app.get('/managed-services', (req, res) => {
+  res.render('managed-services', { title: 'Managed Services - Ylsoo Corporation' });
+});
+
+// Training & Certification Page
+app.get('/training', (req, res) => {
+  res.render('training', { title: 'Training & Certification - Ylsoo Corporation' });
+});
+
+// Customer Success Page
+app.get('/customer-success', (req, res) => {
+  res.render('customer-success', { title: 'Customer Success - Ylsoo Corporation' });
+});
+
 // Industries Page
 app.get('/industries', (req, res) => {
   res.render('industries', { title: 'Industries - Ylsoo Corporation' });
@@ -59,7 +109,127 @@ app.get('/aivory', (req, res) => {
 
 // Contact Page
 app.get('/contact', (req, res) => {
-  res.render('contact', { title: 'Contact - Ylsoo Corporation' });
+  res.render('contact', {
+    title: 'Contact - Ylsoo Corporation',
+    message: null,
+    error: null,
+    formData: {}
+  });
+});
+
+// Case Studies Page
+app.get('/case-studies', (req, res) => {
+  res.render('case-studies', { title: 'Case Studies - Ylsoo Corporation' });
+});
+
+// Community Impact Page
+app.get('/community', (req, res) => {
+  res.render('community', { title: 'Community Impact - Ylsoo Corporation' });
+});
+
+// Global Offices Page
+app.get('/global-offices', (req, res) => {
+  res.render('global-offices', { title: 'Global Offices - Ylsoo Corporation' });
+});
+
+// Research Page
+app.get('/research', (req, res) => {
+  res.render('research', { title: 'Research & Insights - Ylsoo Corporation' });
+});
+
+// Innovation Labs Page
+app.get('/innovation-labs', (req, res) => {
+  res.render('innovation-labs', { title: 'Innovation Labs - Ylsoo Corporation' });
+});
+
+// Leadership Page
+app.get('/leadership', (req, res) => {
+  res.render('leadership', { title: 'Leadership - Ylsoo Corporation' });
+});
+
+// Careers Page
+app.get('/careers', (req, res) => {
+  res.render('careers', { title: 'Careers - Ylsoo Corporation' });
+});
+
+// Compliance Page
+app.get('/compliance', (req, res) => {
+  res.render('compliance', { title: 'Compliance & Governance - Ylsoo Corporation' });
+});
+
+// Developers Page
+app.get('/developers', (req, res) => {
+  res.render('developers', { title: 'Developers - Ylsoo Corporation' });
+});
+
+// Events Page
+app.get('/events', (req, res) => {
+  res.render('events', { title: 'Events - Ylsoo Corporation' });
+});
+
+// Newsroom Page
+app.get('/newsroom', (req, res) => {
+  res.render('newsroom', { title: 'Newsroom - Ylsoo Corporation' });
+});
+
+// Investor Relations Page
+app.get('/investors', (req, res) => {
+  res.render('investors', { title: 'Investor Relations - Ylsoo Corporation' });
+});
+
+// Accessibility Page
+app.get('/accessibility', (req, res) => {
+  res.render('accessibility', { title: 'Accessibility - Ylsoo Corporation' });
+});
+
+// Brand & Media Page
+app.get('/brand', (req, res) => {
+  res.render('brand', { title: 'Brand & Media - Ylsoo Corporation' });
+});
+
+// Partners Page
+app.get('/partners', (req, res) => {
+  res.render('partners', { title: 'Partners - Ylsoo Corporation' });
+});
+
+// Procurement Page
+app.get('/procurement', (req, res) => {
+  res.render('procurement', { title: 'Supplier & Procurement - Ylsoo Corporation' });
+});
+
+// Resource Center Page
+app.get('/resources', (req, res) => {
+  res.render('resources', { title: 'Resource Center - Ylsoo Corporation' });
+});
+
+// Cloud Platform Page
+app.get('/cloud-platform', (req, res) => {
+  res.render('cloud-platform', { title: 'Cloud Platform - Ylsoo Corporation' });
+});
+
+// Data & Analytics Page
+app.get('/data-analytics', (req, res) => {
+  res.render('data-analytics', { title: 'Data & Analytics - Ylsoo Corporation' });
+});
+
+// Security Page
+app.get('/security', (req, res) => {
+  res.render('security', { title: 'Security - Ylsoo Corporation' });
+});
+
+// Edge & IoT Page
+app.get('/edge-iot', (req, res) => {
+  res.render('edge-iot', { title: 'Edge & IoT - Ylsoo Corporation' });
+});
+
+// Sustainability Page
+app.get('/sustainability', (req, res) => {
+  res.render('sustainability', { title: 'Sustainability - Ylsoo Corporation' });
+});
+
+// Support Page
+app.get('/support', (req, res) => {
+  res.render('support', { title: 'Support - Ylsoo Corporation' });
 });
 
 // Case Studies Page
@@ -148,14 +318,56 @@ app.get('/support', (req, res) => {
 });
 
 // Contact Form Submission (simple handler)
-app.post('/contact', (req, res) => {
-  console.log('New contact form submission:');
-  console.log(req.body);
+app.post('/contact', async (req, res) => {
+  const { name, email, subject, message } = req.body;
 
-  // In production, you could send an email or store this in a database here.
+  const trimmedName = name ? name.trim() : '';
+  const trimmedEmail = email ? email.trim() : '';
+  const trimmedSubject = subject ? subject.trim() : '';
+  const trimmedMessage = message ? message.trim() : '';
+
+  const formData = { name: trimmedName, email: trimmedEmail, subject: trimmedSubject, message: trimmedMessage };
+
+  let successMessage = null;
+  let errorMessage = null;
+
+  console.log('New contact form submission received:', formData);
+
+  try {
+    await sendEmailThroughResend({
+      from: 'Ylsoo Concierge <p.mails@ylsoo.com>',
+      to: trimmedEmail ? [trimmedEmail] : ['info@ylsoo.com'],
+      subject: trimmedSubject ? `We received your message: ${trimmedSubject}` : 'We received your message',
+      html: `
+        <p>Hi ${trimmedName || 'there'},</p>
+        <p>Thank you for contacting Ylsoo Corporation. A member of our team will review your request shortly.</p>
+        <p><strong>Summary of your request</strong></p>
+        <ul>
+          <li><strong>Name:</strong> ${trimmedName || 'Not provided'}</li>
+          <li><strong>Email:</strong> ${trimmedEmail || 'Not provided'}</li>
+          <li><strong>Subject:</strong> ${trimmedSubject || 'General inquiry'}</li>
+        </ul>
+        <p><strong>Message:</strong></p>
+        <p>${trimmedMessage.replace(/\n/g, '<br />') || 'No additional details were included.'}</p>
+        <p>If you need immediate assistance, reply to this email or call us at +1 415 555 0182.</p>
+        <p>— The Ylsoo Team</p>
+      `,
+      text: `Hi ${trimmedName || 'there'},\n\nThank you for contacting Ylsoo Corporation. A member of our team will review your request shortly.\n\nName: ${trimmedName || 'Not provided'}\nEmail: ${trimmedEmail || 'Not provided'}\nSubject: ${trimmedSubject || 'General inquiry'}\n\nMessage:\n${trimmedMessage || 'No additional details were included.'}\n\nIf you need immediate assistance, reply to this email or call us at +1 415 555 0182.\n\n— The Ylsoo Team`,
+      reply_to: 'info@ylsoo.com',
+      bcc: ['info@ylsoo.com']
+    });
+
+    successMessage = 'Thank you for reaching out! We have emailed a confirmation and will get back to you shortly.';
+  } catch (error) {
+    console.error('Unable to send contact confirmation email:', error.message);
+    errorMessage = 'We received your message, but we were unable to send a confirmation email at this time.';
+  }
+
   res.render('contact', {
     title: 'Contact - Ylsoo Corporation',
-    message: 'Thank you for reaching out! We will get back to you shortly.'
+    message: successMessage,
+    error: errorMessage,
+    formData: successMessage ? {} : formData
   });
 });
 

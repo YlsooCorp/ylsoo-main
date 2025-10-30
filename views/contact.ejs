@@ -45,6 +45,26 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
+.contact-alert {
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.contact-alert.success {
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  color: #225b2a;
+}
+
+.contact-alert.error {
+  background-color: #fdecea;
+  border: 1px solid #f44336;
+  color: #972626;
+}
+
 .contact-form h2 {
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
@@ -147,11 +167,17 @@
   <div class="contact-container">
     <div class="contact-form">
       <h2>Send us a message</h2>
+      <% if (typeof message !== 'undefined' && message) { %>
+        <div class="contact-alert success"><%= message %></div>
+      <% } %>
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="contact-alert error"><%= error %></div>
+      <% } %>
       <form action="/contact" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <input type="text" name="subject" placeholder="Subject" />
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <input type="text" name="name" placeholder="Your Name" value="<%= formData && formData.name ? formData.name : '' %>" required />
+        <input type="email" name="email" placeholder="Your Email" value="<%= formData && formData.email ? formData.email : '' %>" required />
+        <input type="text" name="subject" placeholder="Subject" value="<%= formData && formData.subject ? formData.subject : '' %>" />
+        <textarea name="message" rows="5" placeholder="Your Message" required><%= formData && formData.message ? formData.message : '' %></textarea>
         <button type="submit">Send Message</button>
       </form>
     </div>
