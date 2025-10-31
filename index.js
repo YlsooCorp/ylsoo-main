@@ -87,6 +87,11 @@ app.get('/training', (req, res) => {
   res.render('training', { title: 'Training & Certification - Ylsoo Corporation' });
 });
 
+// Ylsoo Academy Page
+app.get('/academy', (req, res) => {
+  res.render('academy', { title: 'Ylsoo Academy - Ylsoo Corporation' });
+});
+
 // Customer Success Page
 app.get('/customer-success', (req, res) => {
   res.render('customer-success', { title: 'Customer Success - Ylsoo Corporation' });
@@ -95,6 +100,11 @@ app.get('/customer-success', (req, res) => {
 // Industries Page
 app.get('/industries', (req, res) => {
   res.render('industries', { title: 'Industries - Ylsoo Corporation' });
+});
+
+// Public Sector Page
+app.get('/public-sector', (req, res) => {
+  res.render('public-sector', { title: 'Public Sector Solutions - Ylsoo Corporation' });
 });
 
 // SonaOS Page
@@ -127,6 +137,11 @@ app.get('/community', (req, res) => {
   res.render('community', { title: 'Community Impact - Ylsoo Corporation' });
 });
 
+// Ylsoo Foundation Page
+app.get('/foundation', (req, res) => {
+  res.render('foundation', { title: 'Ylsoo Foundation - Ylsoo Corporation' });
+});
+
 // Global Offices Page
 app.get('/global-offices', (req, res) => {
   res.render('global-offices', { title: 'Global Offices - Ylsoo Corporation' });
@@ -155,6 +170,16 @@ app.get('/careers', (req, res) => {
 // Compliance Page
 app.get('/compliance', (req, res) => {
   res.render('compliance', { title: 'Compliance & Governance - Ylsoo Corporation' });
+});
+
+// Corporate Governance Page
+app.get('/governance', (req, res) => {
+  res.render('governance', { title: 'Corporate Governance - Ylsoo Corporation' });
+});
+
+// Ethics & Conduct Page
+app.get('/ethics', (req, res) => {
+  res.render('ethics', { title: 'Ethics & Conduct - Ylsoo Corporation' });
 });
 
 // Developers Page
@@ -192,6 +217,11 @@ app.get('/partners', (req, res) => {
   res.render('partners', { title: 'Partners - Ylsoo Corporation' });
 });
 
+// Marketplace Page
+app.get('/marketplace', (req, res) => {
+  res.render('marketplace', { title: 'Marketplace - Ylsoo Corporation' });
+});
+
 // Procurement Page
 app.get('/procurement', (req, res) => {
   res.render('procurement', { title: 'Supplier & Procurement - Ylsoo Corporation' });
@@ -207,6 +237,11 @@ app.get('/cloud-platform', (req, res) => {
   res.render('cloud-platform', { title: 'Cloud Platform - Ylsoo Corporation' });
 });
 
+// Global Infrastructure Page
+app.get('/infrastructure', (req, res) => {
+  res.render('infrastructure', { title: 'Global Infrastructure - Ylsoo Corporation' });
+});
+
 // Data & Analytics Page
 app.get('/data-analytics', (req, res) => {
   res.render('data-analytics', { title: 'Data & Analytics - Ylsoo Corporation' });
@@ -215,6 +250,11 @@ app.get('/data-analytics', (req, res) => {
 // Security Page
 app.get('/security', (req, res) => {
   res.render('security', { title: 'Security - Ylsoo Corporation' });
+});
+
+// Responsible AI Page
+app.get('/responsible-ai', (req, res) => {
+  res.render('responsible-ai', { title: 'Responsible AI - Ylsoo Corporation' });
 });
 
 // Edge & IoT Page
@@ -227,11 +267,19 @@ app.get('/sustainability', (req, res) => {
   res.render('sustainability', { title: 'Sustainability - Ylsoo Corporation' });
 });
 
+// Supply Chain Responsibility Page
+app.get('/supply-chain', (req, res) => {
+  res.render('supply-chain', { title: 'Supply Chain Responsibility - Ylsoo Corporation' });
+});
+
 // Support Page
 app.get('/support', (req, res) => {
   res.render('support', { title: 'Support - Ylsoo Corporation' });
 });
 
+// Pricing & Licensing Page
+app.get('/pricing', (req, res) => {
+  res.render('pricing', { title: 'Pricing & Licensing - Ylsoo Corporation' });
 // Case Studies Page
 app.get('/case-studies', (req, res) => {
   res.render('case-studies', { title: 'Case Studies - Ylsoo Corporation' });
