@@ -5,6 +5,96 @@
 
 const express = require('express');
 const path = require('path');
+const http = require('node:http');
+const https = require('node:https');
+
+let fetch = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null;
+
+if (!fetch) {
+  fetch = (url, options = {}) =>
+    new Promise((resolve, reject) => {
+      const requestUrl = typeof url === 'string' ? new URL(url) : url;
+      const { method = 'GET', headers = {}, body } = options;
+      const normalizedHeaders = { ...headers };
+      const requestBody =
+        typeof body === 'string' || Buffer.isBuffer(body) ? body : body ? JSON.stringify(body) : undefined;
+
+      if (requestBody && !normalizedHeaders['content-length'] && !normalizedHeaders['Content-Length']) {
+        normalizedHeaders['Content-Length'] = Buffer.byteLength(requestBody);
+      }
+
+      const protocol = requestUrl.protocol === 'http:' ? http : https;
+
+      const requestOptions = {
+        method,
+        headers: normalizedHeaders,
+        hostname: requestUrl.hostname,
+        port:
+          requestUrl.port || (requestUrl.protocol === 'http:' ? 80 : 443),
+        path: `${requestUrl.pathname}${requestUrl.search}`
+      };
+
+      const req = protocol.request(requestOptions, (res) => {
+        const chunks = [];
+        res.on('data', (chunk) => chunks.push(chunk));
+        res.on('end', () => {
+          const buffer = Buffer.concat(chunks);
+          const responseText = buffer.toString('utf8');
+
+          resolve({
+            ok: res.statusCode >= 200 && res.statusCode < 300,
+            status: res.statusCode,
+            statusText: res.statusMessage,
+            headers: res.headers,
+            text: async () => responseText,
+            json: async () => {
+              if (!responseText) {
+                return {};
+              }
+              try {
+                return JSON.parse(responseText);
+              } catch (error) {
+                throw new Error(`Unable to parse JSON response: ${error.message}`);
+              }
+            }
+          });
+        });
+      });
+
+      req.on('error', reject);
+
+      if (requestBody) {
+        req.write(requestBody);
+      }
+
+      req.end();
+    });
+}
+
+const RESEND_API_URL = 'https://api.resend.com/emails';
+const resendApiKey = process.env.RESEND_API_KEY;
+
+async function sendEmailThroughResend(payload) {
+  if (!resendApiKey) {
+    throw new Error('Resend API key is not configured.');
+  }
+
+  const response = await fetch(RESEND_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${resendApiKey}`
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errorDetails = await response.text();
+    throw new Error(`Resend API request failed: ${errorDetails}`);
+  }
+
+  return response.json();
+}
 
 const fetch = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null;
 
