@@ -4,16 +4,105 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
   <header class="nav">
-    <div class="logo">Ylsoo</div>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="#">Products</a>
-      <a href="#">Contact</a>
-    </nav>
+    <div class="nav-inner">
+      <a class="logo" href="/">Ylsoo</a>
+      <nav class="nav-links">
+        <a class="nav-link" href="/">Home</a>
+        <details class="nav-menu">
+          <summary>Solutions</summary>
+          <div class="nav-menu-panel">
+            <div class="nav-panel-group">
+              <span>Programmes</span>
+              <a href="/solutions">Solutions Overview</a>
+              <a href="/industries">Industries</a>
+              <a href="/public-sector">Public Sector</a>
+              <a href="/case-studies">Case Studies</a>
+            </div>
+            <div class="nav-panel-group">
+              <span>Expert Services</span>
+              <a href="/services">Professional Services</a>
+              <a href="/managed-services">Managed Operations</a>
+              <a href="/training">Training &amp; Certification</a>
+              <a href="/customer-success">Customer Success Office</a>
+            </div>
+          </div>
+        </details>
+        <details class="nav-menu">
+          <summary>Platforms</summary>
+          <div class="nav-menu-panel">
+            <div class="nav-panel-group">
+              <span>Core Platforms</span>
+              <a href="/products">Product Portfolio</a>
+              <a href="/sonaos">SonaOS Cloud</a>
+              <a href="/aivory">Aivory AI Fabric</a>
+            </div>
+            <div class="nav-panel-group">
+              <span>Technology &amp; Tools</span>
+              <a href="/cloud-platform">Cloud Platform</a>
+              <a href="/data-analytics">Data &amp; Analytics</a>
+              <a href="/edge-iot">Edge &amp; IoT</a>
+              <a href="/infrastructure">Global Infrastructure</a>
+              <a href="/marketplace">Marketplace</a>
+              <a href="/developers">Developers</a>
+            </div>
+          </div>
+        </details>
+        <details class="nav-menu">
+          <summary>Company</summary>
+          <div class="nav-menu-panel">
+            <div class="nav-panel-group">
+              <span>About Ylsoo</span>
+              <a href="/about">About</a>
+              <a href="/leadership">Leadership</a>
+              <a href="/careers">Careers</a>
+              <a href="/innovation-labs">Innovation Labs</a>
+              <a href="/global-offices">Global Offices</a>
+            </div>
+            <div class="nav-panel-group">
+              <span>Culture &amp; Impact</span>
+              <a href="/community">Community Impact</a>
+              <a href="/foundation">Ylsoo Foundation</a>
+              <a href="/sustainability">Sustainability</a>
+              <a href="/newsroom">Newsroom</a>
+              <a href="/events">Events</a>
+            </div>
+          </div>
+        </details>
+        <details class="nav-menu">
+          <summary>Trust &amp; Impact</summary>
+          <div class="nav-menu-panel">
+            <div class="nav-panel-group">
+              <span>Assurance</span>
+              <a href="/security">Security</a>
+              <a href="/compliance">Compliance</a>
+              <a href="/governance">Corporate Governance</a>
+              <a href="/ethics">Ethics &amp; Conduct</a>
+              <a href="/responsible-ai">Responsible AI</a>
+              <a href="/accessibility">Accessibility</a>
+            </div>
+            <div class="nav-panel-group">
+              <span>Stakeholders</span>
+              <a href="/investors">Investors</a>
+              <a href="/supply-chain">Supply Chain</a>
+              <a href="/procurement">Supplier Portal</a>
+              <a href="/research">Research &amp; Insights</a>
+            </div>
+          </div>
+        </details>
+        <a class="nav-link" href="/resources">Resources</a>
+        <a class="nav-link" href="/partners">Partners</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="nav-link" href="/support">Support</a>
+        <a class="btn btn-soft" href="/contact">Contact</a>
+        <a class="btn" href="/pricing">Book a consultation</a>
+      </div>
+    </div>
   </header>
   <main>
